@@ -1,14 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-primary",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// We use the same Inter font for display as well
+const display = Inter({
+  variable: "--font-display",
+  subsets: ["latin"],
+});
+
+const outfit = Outfit({
+  variable: "--font-headline",
+  subsets: ["latin"],
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-accent",
   subsets: ["latin"],
 });
 
@@ -25,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${display.variable} ${outfit.variable} ${plusJakartaSans.variable}`} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <Navbar />
         {children}
