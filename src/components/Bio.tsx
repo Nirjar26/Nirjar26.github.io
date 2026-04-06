@@ -19,12 +19,12 @@ const Bio = () => {
   };
 
   const wordVariants: Variants = {
-    hidden: { opacity: 0, y: 15, filter: "blur(5px)" },
+    hidden: { opacity: 0, y: 20, filter: "blur(6px)" },
     visible: {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
-      transition: { duration: 0.8, ease: "easeOut" }
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
     }
   };
 
@@ -37,13 +37,13 @@ const Bio = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             {words.map((word, i) => (
               <React.Fragment key={i}>
                 <motion.span
                   variants={wordVariants}
-                  style={{ display: "inline-block" }}
+                  style={{ display: "inline-block", willChange: "transform, opacity, filter" }}
                 >
                   {word}
                 </motion.span>

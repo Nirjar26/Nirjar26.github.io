@@ -40,12 +40,23 @@ const experienceItems: JourneyItem[] = [
 ];
 
 const Journey = () => {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 40, filter: "blur(4px)" },
+    hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
     visible: {
       opacity: 1,
       y: 0,
-      filter: "none",
+      filter: "blur(0px)",
       transition: {
         duration: 0.8,
         ease: [0.16, 1, 0.3, 1]
@@ -53,29 +64,36 @@ const Journey = () => {
     }
   };
 
+  const lineVariants: Variants = {
+    hidden: { scaleX: 0, opacity: 0 },
+    visible: {
+      scaleX: 1,
+      opacity: 0.2,
+      transition: { duration: 1, ease: "easeInOut" }
+    }
+  };
+
   return (
     <section id="journey" className={styles.journeySection}>
       <div className="container">
-        <div className={styles.journeyContainer}>
+        <motion.div 
+          className={styles.journeyContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={containerVariants}
+        >
           <div className={styles.sectionHeader}>
             <motion.span
               className={styles.headerText}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
               variants={itemVariants}
             >
               / JOURNEY
             </motion.span>
             <motion.div
               className={styles.headerLine}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={{
-                hidden: { width: 0, opacity: 0 },
-                visible: { width: 100, opacity: 0.2, transition: { duration: 1 } }
-              }}
+              variants={lineVariants}
+              style={{ transformOrigin: "left" }}
             />
           </div>
 
@@ -84,9 +102,6 @@ const Journey = () => {
             <div className={styles.categoryContainer}>
               <motion.span
                 className={styles.categoryLabel}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
                 variants={itemVariants}
               >
                 [ Education ]
@@ -96,9 +111,6 @@ const Journey = () => {
                   <motion.div
                     key={index}
                     className={styles.timelineItem}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
                     variants={itemVariants}
                   >
                     <span className={styles.itemDate}>{item.year}</span>
@@ -122,9 +134,6 @@ const Journey = () => {
             <div className={styles.categoryContainer}>
               <motion.span
                 className={styles.categoryLabel}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
                 variants={itemVariants}
               >
                 [ Work experience ]
@@ -134,9 +143,6 @@ const Journey = () => {
                   <motion.div
                     key={index}
                     className={styles.timelineItem}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
                     variants={itemVariants}
                   >
                     <span className={styles.itemDate}>{item.year}</span>
@@ -156,10 +162,12 @@ const Journey = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 };
 
 export default Journey;
+
+

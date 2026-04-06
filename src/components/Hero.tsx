@@ -18,35 +18,31 @@ const Hero = () => {
 
   const itemVariants: Variants = {
     hidden: { 
-      y: -150,
+      y: 40,
       opacity: 0,
-      rotateX: -20,
-      scale: 0.95 
+      filter: "blur(6px)"
     },
     visible: {
       y: 0,
       opacity: 1,
-      rotateX: 0,
-      scale: 1,
+      filter: "blur(0px)",
       transition: {
-        type: "spring",
-        stiffness: 150,
-        damping: 12,
-        mass: 1.3
+        duration: 1,
+        ease: [0.16, 1, 0.3, 1]
       }
     }
   };
 
   const infoVariants: Variants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { y: 20, opacity: 0, filter: "blur(4px)" },
     visible: {
       y: 0,
       opacity: 1,
+      filter: "blur(0px)",
       transition: {
-        type: "spring",
-        stiffness: 110,
-        damping: 16
-        // Removed hard delay to sync with headline
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1],
+        delay: 0.2
       }
     }
   };

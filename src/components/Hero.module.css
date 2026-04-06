@@ -5,7 +5,10 @@
   justify-content: center;
   background-color: var(--bg);
   padding: 8rem 0;
-  margin-top: 52px; /* Fixed navbar height to prevent overlap */
+  padding-top: calc(8rem + 64px);
+  /* Account for fixed navbar */
+  padding-bottom: 8rem;
+  margin-top: 0;
   position: relative;
   overflow: hidden;
 }
@@ -61,14 +64,15 @@
 
 @media (min-width: 769px) and (max-width: 1100px) {
   .heroSection {
-    padding: 7rem 0;
+    padding-top: calc(5rem + 64px);
+    padding-bottom: 5rem;
   }
-  
+
   .headline {
     font-size: 5rem;
     letter-spacing: -0.05rem;
   }
-  
+
   .row {
     gap: 1.5rem;
   }
@@ -76,7 +80,8 @@
 
 @media (max-width: 768px) {
   .heroSection {
-    padding: 5rem 0;
+    padding-top: calc(4rem + 64px);
+    padding-bottom: 4rem;
     min-height: auto;
     display: flex;
     align-items: center;

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
@@ -33,47 +33,91 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const containerVariants: Variants = {
+    hidden: { opacity: 0, y: -20, filter: "blur(5px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { 
+        duration: 0.8, 
+        ease: [0.16, 1, 0.3, 1],
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: -10, filter: "blur(4px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } 
+    }
+  };
+
+  const overlayVariants: Variants = {
+    hidden: { x: "100%", opacity: 0 },
+    visible: { 
+      x: 0, 
+      opacity: 1,
+      transition: { 
+        duration: 0.5, 
+        ease: [0.16, 1, 0.3, 1],
+        staggerChildren: 0.07,
+        delayChildren: 0.2
+      }
+    },
+    exit: { 
+      x: "100%", 
+      opacity: 0,
+      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } 
+    }
+  };
+
+  const mobileLinkVariants: Variants = {
+    hidden: { x: 30, opacity: 0, filter: "blur(5px)" },
+    visible: { 
+      x: 0, 
+      opacity: 1, 
+      filter: "blur(0px)",
+      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } 
+    }
+  };
+
   return (
-    <motion.nav
+    <nav
       className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''} ${isMenuOpen ? styles.menuOpen : ''}`}
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <div className={styles.container}>
-        <div className={styles.logo}>
+      <motion.div 
+        className={styles.container}
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <motion.div className={styles.logo} variants={itemVariants}>
           <div className={styles.logoDot} />
           NG
-        </div>
+        </motion.div>
 
         {/* Desktop Links */}
         <ul className={styles.navLinks}>
-          {navItems.map((item, index) => (
-            <motion.li
+          {navItems.map((item) => (
+            <motion.li 
               key={item.name}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 + index * 0.1 }}
+              variants={itemVariants}
             >
-              {item.path.startsWith('#') ? (
-                <a href={item.path} className={styles.navLink}>
-                  {item.name}
-                </a>
-              ) : (
-                <Link href={item.path} className={styles.navLink}>
-                  {item.name}
-                </Link>
-              )}
+              <a href={item.path} className={styles.navLink}>
+                {item.name}
+              </a>
             </motion.li>
           ))}
         </ul>
 
         <div className={styles.navActions}>
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 1.1 }}
-          >
+          <motion.div variants={itemVariants}>
             <a href="#contact" className={styles.cta}>
               Let's talk
             </a>
@@ -89,48 +133,34 @@ const Navbar = () => {
             <span className={isMenuOpen ? styles.barOpen : styles.bar}></span>
           </button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
             className={styles.mobileOverlay}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: '100vh', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={overlayVariants}
           >
             <ul className={styles.mobileLinks}>
               {navItems.map((item, index) => (
                 <motion.li
                   key={item.name}
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
+                  variants={mobileLinkVariants}
                 >
-                  {item.path.startsWith('#') ? (
-                    <a
-                      href={item.path}
-                      className={styles.mobileNavLink}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </a>
-                  ) : (
-                    <Link
-                      href={item.path}
-                      className={styles.mobileNavLink}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  )}
+                  <a
+                    href={item.path}
+                    className={styles.mobileNavLink}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
                 </motion.li>
               ))}
-              <motion.li
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-              >
+              <motion.li variants={mobileLinkVariants}>
                 <a 
                   href="#contact" 
                   className={styles.mobileCTA} 
@@ -143,8 +173,9 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 };
 
 export default Navbar;
+

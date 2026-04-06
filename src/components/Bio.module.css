@@ -19,7 +19,7 @@
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .bioSection {
-    padding: 4rem 0;
+    padding: 5rem 0;
   }
 
   .bio {
@@ -30,7 +30,7 @@
 
 @media (max-width: 768px) {
   .bioSection {
-    padding: 2rem 0;
+    padding: 4rem 0;
   }
 
   .bio {

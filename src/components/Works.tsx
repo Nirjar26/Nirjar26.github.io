@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, Variants } from 'framer-motion';
 import { Github, ExternalLink, Shield, Rocket, Lock, Layers, X, Cpu, Globe, Database, Cog } from 'lucide-react';
 import styles from './Works.module.css';
 
@@ -142,8 +142,6 @@ const projects: Project[] = [
 
 const Works = () => {
   const [activeStackProject, setActiveStackProject] = useState<Project | null>(null);
-  const gridRef = useRef(null);
-  const isGridInView = useInView(gridRef, { once: true, amount: 0.05, margin: "100px 0px" });
 
   useEffect(() => {
     if (activeStackProject) {
@@ -156,49 +154,6 @@ const Works = () => {
     };
   }, [activeStackProject]);
 
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: [0.16, 1, 0.3, 1]
-      }
-    }
-  };
-
-  const modalVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.95, y: 20 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        type: 'spring',
-        damping: 25,
-        stiffness: 300
-      }
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.95,
-      y: 20,
-      transition: { duration: 0.2 }
-    }
-  };
-
   const getCategoryIcon = (category: string) => {
     switch (category.toLowerCase()) {
       case 'frontend': return <Globe size={18} />;
@@ -208,31 +163,35 @@ const Works = () => {
     }
   };
 
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+
   return (
     <section id="works" className={styles.worksSection}>
       <div className="container">
-        <motion.div
-          className={styles.header}
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className={styles.header}>
           <span className={styles.headerLabel}>/ WORKS</span>
           <div className={styles.headerLine} />
-        </motion.div>
+        </div>
 
-        <motion.div
-          ref={gridRef}
-          className={styles.projectsGrid}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isGridInView ? "visible" : "hidden"}
-        >
+        <div className={styles.projectsGrid}>
           {projects.map((project) => (
             <motion.div
               key={project.title}
               className={styles.projectItem}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
               variants={itemVariants}
             >
               <div className={styles.itemLinks}>
@@ -277,66 +236,56 @@ const Works = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
 
-      <AnimatePresence>
-        {activeStackProject && (
-          <motion.div
-            className={styles.modalOverlay}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActiveStackProject(null)}
+      {activeStackProject && (
+        <div
+          className={styles.modalOverlay}
+          onClick={() => setActiveStackProject(null)}
+        >
+          <div
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
           >
-            <motion.div
-              className={styles.modalContent}
-              variants={modalVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              onClick={(e) => e.stopPropagation()}
+            <button
+              className={styles.modalClose}
+              onClick={() => setActiveStackProject(null)}
             >
-              <button
-                className={styles.modalClose}
-                onClick={() => setActiveStackProject(null)}
-              >
-                <X size={20} />
-              </button>
+              <X size={20} />
+            </button>
 
-              <div className={styles.modalHeader}>
-                <div className={styles.modalProjectIcon}>
-                  {activeStackProject.icon}
-                </div>
-                <div>
-                  <h3 className={styles.modalTitle}>{activeStackProject.title}</h3>
-                  <p className={styles.modalSubtitle}>Full Tech Stack Architecture</p>
-                </div>
+            <div className={styles.modalHeader}>
+              <div>
+                <h3 className={styles.modalTitle}>{activeStackProject.title}</h3>
+                <p className={styles.modalSubtitle}>Full Tech Stack Architecture</p>
               </div>
+            </div>
 
-              <div className={styles.stackGrid}>
-                {activeStackProject.techStack.map((category) => (
-                  <div key={category.category} className={styles.stackCategory}>
-                    <div className={styles.categoryHeader}>
-                      {getCategoryIcon(category.category)}
-                      <h4>{category.category}</h4>
-                    </div>
-                    <div className={styles.stackItems}>
-                      {category.items.map((item) => (
-                        <span key={item} className={styles.stackItem}>
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+            <div className={styles.stackGrid}>
+              {activeStackProject.techStack.map((category) => (
+                <div key={category.category} className={styles.stackCategory}>
+                  <div className={styles.categoryHeader}>
+                    {getCategoryIcon(category.category)}
+                    <h4>{category.category}</h4>
                   </div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  <div className={styles.stackItems}>
+                    {category.items.map((item) => (
+                      <span key={item} className={styles.stackItem}>
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
 
 export default Works;
+
+

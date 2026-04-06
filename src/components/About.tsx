@@ -11,18 +11,18 @@ const About = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.12,
         delayChildren: 0.2
       }
     }
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+    hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
     visible: {
       opacity: 1,
       y: 0,
-      filter: "none",
+      filter: "blur(0px)",
       transition: {
         duration: 0.8,
         ease: [0.16, 1, 0.3, 1]
@@ -31,34 +31,35 @@ const About = () => {
   };
 
   const lineVariants: Variants = {
-    hidden: { width: 0, opacity: 0 },
+    hidden: { scaleX: 0, opacity: 0.1 },
     visible: {
-      width: 100,
-      opacity: 0.2,
-      transition: { duration: 1, delay: 0.5 }
+      scaleX: 1,
+      opacity: 0.3,
+      transition: { duration: 1.2, ease: "easeInOut" }
     }
   };
 
   return (
     <section id="about" className={styles.aboutSection}>
       <div className="container">
-        <motion.div
+        <motion.div 
           className={styles.aboutContainer}
-          variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "0px" }}
+          viewport={{ once: true, amount: 0.2 }}
+          variants={containerVariants}
         >
           <div className={styles.sectionIndicator}>
-            <motion.span
+            <motion.span 
               className={styles.indicatorText}
               variants={itemVariants}
             >
               / ABOUT
             </motion.span>
-            <motion.div
+            <motion.div 
               className={styles.indicatorLine}
               variants={lineVariants}
+              style={{ transformOrigin: "left" }}
             />
           </div>
 
@@ -75,7 +76,7 @@ const About = () => {
               These days I'm trying to get good at a few specific things rather than knowing a bit about everything.
             </motion.p>
 
-            <motion.div className={styles.actionsContainer}>
+            <div className={styles.actionsContainer}>
               <motion.a
                 href="/resume.pdf"
                 target="_blank"
@@ -108,9 +109,9 @@ const About = () => {
                   </motion.a>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div className={styles.statsGrid} variants={containerVariants}>
+            <div className={styles.statsGrid}>
               <motion.div className={styles.statCard} variants={itemVariants}>
                 <span className={styles.statNumber}>2+</span>
                 <span className={styles.statLabel}>Years of Experience in Information Technology</span>
@@ -119,7 +120,7 @@ const About = () => {
                 <span className={styles.statNumber}>3+</span>
                 <span className={styles.statLabel}>Projects Completed</span>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
         </motion.div>
       </div>
@@ -128,3 +129,5 @@ const About = () => {
 };
 
 export default About;
+
+

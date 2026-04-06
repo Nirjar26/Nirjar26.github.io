@@ -1,6 +1,6 @@
 .contactSection {
   background-color: var(--bg-alt);
-  padding: 6rem 0 0 0;
+  padding: 5rem 0 0 0;
   color: var(--ink);
   position: relative;
   overflow: hidden;
@@ -97,7 +97,8 @@
   font-family: var(--font-primary);
   font-size: 1rem;
   border-radius: var(--radius-md);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, opacity, filter;
   outline: none;
 }
 
@@ -137,7 +138,8 @@
   font-family: var(--font-primary);
   font-weight: 600;
   font-size: 1rem;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+  will-change: transform;
   border: 1px solid transparent;
 }
 
@@ -191,7 +193,8 @@
   border-radius: var(--radius-full);
   color: var(--ink);
   background: transparent;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s ease, color 0.4s ease, background-color 0.4s ease;
+  will-change: transform;
 }
 
 .socialItem:hover {
@@ -200,10 +203,8 @@
 }
 
 .socialIconImg {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  will-change: opacity, transform;
   opacity: 0.8;
 }
 
@@ -212,9 +213,7 @@
   transform: scale(1.1);
 }
 
-.githubIcon {
-  transform: scale(1.35) !important;
-}
+
 
 .contactInfoSection {
   width: 100%;
@@ -313,7 +312,7 @@
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .contactSection {
-    padding: 6rem 0 0 0;
+    padding: 5rem 0;
   }
 
   .title {
@@ -338,7 +337,7 @@
 
 @media (max-width: 768px) {
   .contactSection {
-    padding: 3rem 0 0 0;
+    padding: 4rem 0;
   }
 
   .contactContainer {
