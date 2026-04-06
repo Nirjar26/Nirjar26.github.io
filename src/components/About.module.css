@@ -1,0 +1,244 @@
+.aboutSection {
+  background-color: var(--bg-alt);
+  padding: 6rem 0;
+  position: relative;
+}
+
+.aboutContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.sectionIndicator {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.indicatorText {
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  opacity: 0.6;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.indicatorLine {
+  height: 1px;
+  background-color: var(--ink);
+  opacity: 0.2;
+  width: 100px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.logoDot {
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.paragraph {
+  font-family: var(--font-accent);
+  color: #58585a;
+  font-size: clamp(1.15rem, 1.1vw, 1.05rem);
+  line-height: 1.7;
+  /* color: var(--ink); */
+  font-weight: 400;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+/* .textContainer:hover .paragraph,
+.textContainer:hover .actionsContainer {
+  opacity: 0.5;
+} */
+
+.textContainer:hover .paragraph:hover,
+.textContainer:hover .actionsContainer:hover {
+  opacity: 1;
+  filter: blur(0px);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.statCard {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background-color: var(--bg-alt);
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  transition: all 0.4s ease;
+}
+
+.statCard:hover {
+  background-color: var(--bg);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.statNumber {
+  font-family: var(--font-headline);
+  font-size: 3rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  color: var(--mid);
+  text-transform: capitalize;
+  letter-spacing: 0.01em;
+  font-weight: 600;
+}
+
+.actionsContainer {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.downloadBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 2rem;
+  border: 1px solid rgb(229, 229, 234);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.downloadBtn:hover {
+  background: var(--ink);
+  color: var(--bg);
+  transform: translateY(-2px);
+}
+
+.socialRow {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.socialLink {
+  color: var(--ink);
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialLink:hover {
+  opacity: 1;
+  transform: translateY(-5px) scale(1.1);
+  color: var(--accent);
+}
+
+.socialIcon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.paragraph strong {
+  font-weight: 600;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .aboutSection {
+    padding: 5rem 0;
+  }
+
+  .paragraph {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutSection {
+    padding: 3rem 0;
+  }
+
+  .aboutContainer {
+    gap: 2.5rem;
+  }
+
+  .paragraph {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .statCard {
+    padding: 1.5rem;
+  }
+
+  .statNumber {
+    font-size: 2.1rem;
+  }
+
+  .actionsContainer {
+    margin-top: 15px;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .socialRow {
+    justify-content: center;
+    width: 100%;
+  }
+}
