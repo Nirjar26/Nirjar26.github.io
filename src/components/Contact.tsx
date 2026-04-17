@@ -29,6 +29,17 @@ const HashnodeIcon = ({ size = 28, className }: { size?: number, className?: str
   />
 );
 
+const SnapchatIcon = ({ size = 28, className }: { size?: number, className?: string }) => (
+  <img
+    src="/assets/social%20icons/snapchat-svgrepo-com.svg"
+    width={size}
+    height={size}
+    alt="Snapchat"
+    className={className}
+    style={{ display: 'block' }}
+  />
+);
+
 const Contact = () => {
   const [showLocation, setShowLocation] = useState(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -94,31 +105,31 @@ const Contact = () => {
       <div className="container">
         <div className={styles.contactContainer}>
           <div className={styles.indicator}>
-            <span 
-              className={styles.indicatorText} 
+            <span
+              className={styles.indicatorText}
               data-aos="fade-up"
               data-aos-duration="600"
             >
               Get in Touch
             </span>
-            <p 
-              className={styles.description} 
+            <p
+              className={styles.description}
               data-aos="fade-up"
               data-aos-delay="100"
               data-aos-duration="600"
             >
               Please contact me directly at <a href="mailto:nirjargoswami2626@gmail.com" className={styles.mailLink}>nirjargoswami2626@gmail.com</a> or through this form.
             </p>
-            <p 
-              className={styles.description} 
+            <p
+              className={styles.description}
               data-aos="fade-up"
               data-aos-delay="200"
               data-aos-duration="700"
             >
               Building and exploring cloud-native applications, IAM systems, and secure backend architectures.
             </p>
-            <p 
-              className={styles.description} 
+            <p
+              className={styles.description}
               data-aos="fade-up"
               data-aos-delay="300"
               data-aos-duration="600"
@@ -187,6 +198,10 @@ const Contact = () => {
 
       <div className={styles.socialSection} data-aos="fade-up" data-aos-delay="500" data-aos-duration="700">
         <div className="container">
+          <div className={styles.socialSubheader}>
+            <h3 className={styles.socialTitle}>Socials</h3>
+            <p className={styles.socialSubtitle}>Prefer not using the form? Reach me here.</p>
+          </div>
           <div className={styles.socialGrid}>
             <div className={styles.socialRowsWrapper}>
               {/* Main Social Profiles */}
@@ -195,7 +210,7 @@ const Contact = () => {
                   { icon: Instagram, name: "Instagram", href: "https://www.instagram.com/nirjar_goswami/" },
                   { icon: Twitter, name: "X", href: "https://x.com/nirjxrgoswami" },
                   { icon: Linkedin, name: "LinkedIn", href: "https://www.linkedin.com/in/nirjarbharthi-goswami-b593633a7" },
-                  { icon: Ghost, name: "Snapchat", href: "https://www.snapchat.com/@nirjxr26" },
+                  { icon: SnapchatIcon, name: "Snapchat", href: "https://www.snapchat.com/@nirjxr26" },
                   { icon: Github, name: "GitHub", href: "https://github.com/Nirjar26/" },
                   { icon: HashnodeIcon, name: "Hashnode", href: "https://nirjar.hashnode.dev/" }
                 ].map((item, index) => (
@@ -236,7 +251,7 @@ const Contact = () => {
                         </motion.button>
                         <AnimatePresence>
                           {showLocation && (
-                            <motion.div 
+                            <motion.div
                               className={styles.locationPopup}
                               initial={{ opacity: 0, x: -15, scale: 0.96 }}
                               animate={{ opacity: 1, x: 0, scale: 1 }}

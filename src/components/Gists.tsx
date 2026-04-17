@@ -45,12 +45,12 @@ const Gists = () => {
               data-aos-duration="600"
             >
               <div className={`${styles.cardBanner} ${post.gradientClass}`}>
+                <h3 className={styles.cardTitle}>{post.title}</h3>
+                <p className={styles.cardDescription}>{post.description}</p>
+
                 <div className={styles.metaRow}>
                   <span className={styles.date}>{post.date}</span>
                 </div>
-
-                <h3 className={styles.cardTitle}>{post.title}</h3>
-                <p className={styles.cardDescription}>{post.description}</p>
 
                 <div className={styles.cardFooter}>
                   <a

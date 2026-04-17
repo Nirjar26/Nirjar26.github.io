@@ -19,9 +19,9 @@ const Hero = () => {
               <span className={styles.heroWord} style={{ animationDelay: '0.45s' }}>Scale.</span>
             </div>
           </div>
-          
+
           <div className={`${styles.infoGroup} ${styles.heroSubtitle}`} style={{ animationDelay: '0.70s' }}>
-            <span className={styles.intro}>Hello! I am Nirjar Goswami</span>
+            <span className={styles.intro}>Nirjar Goswami</span>
             <span className={styles.role}>Associate Cloud Engineer</span>
           </div>
         </div>

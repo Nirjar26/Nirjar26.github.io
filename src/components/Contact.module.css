@@ -188,7 +188,7 @@
 }
 
 .socialSection {
-  margin-top: 2rem;
+  margin-top: 5rem;
   background-color: var(--bg);
   display: flex;
   flex-direction: column;
@@ -200,6 +200,35 @@
 .socialSection>.container {
   border-top: 1px solid var(--line);
   padding-top: 2.5rem;
+}
+
+.socialSubheader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+  width: 100%;
+}
+
+.socialTitle {
+  font-family: var(--font-accent);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.socialSubtitle {
+  font-family: var(--font-display);
+  font-size: .95rem;
+  color: var(--mid);
+  opacity: 0.8;
+  text-align: center;
+  max-width: 600px;
+  line-height: 1.6;
+  font-weight: 500;
 }
 
 .socialRowsWrapper {
@@ -214,6 +243,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  gap: 1.25rem;
 }
 
 .contactGrid {
@@ -221,6 +251,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  gap: 1.25rem;
 }
 
 .socialWrapper {
@@ -278,24 +309,26 @@
 }
 
 .socialItem {
-  width: 72px;
-  height: 72px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-full);
   color: var(--ink);
   background: transparent;
-  transition: transform 0.4s ease, color 0.4s ease, background-color 0.4s ease;
+  border: 1px solid var(--line);
+  transition: transform 0.4s ease, color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
   will-change: transform;
 }
 
 .socialItem:hover {
   transform: translateY(-4px) scale(1.05);
-  color: var(--accent);
 }
 
 .socialIconImg {
+  width: 24px !important;
+  height: 24px !important;
   transition: opacity 0.3s ease, transform 0.3s ease;
   will-change: opacity, transform;
   opacity: 0.8;
@@ -494,6 +527,10 @@
     padding: 1rem 2rem;
   }
 
+  .socialTitle {
+    font-size: 2rem;
+  }
+
   .contactInfoSection {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -526,7 +563,8 @@
     gap: 1.25rem;
   }
 
-  .socialGrid, .contactGrid {
+  .socialGrid,
+  .contactGrid {
     gap: 0.5rem;
     flex-wrap: nowrap;
   }
