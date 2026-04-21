@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { Github, Shield, Rocket, Lock, Layers, X, Cpu, Globe, Database, Cog } from 'lucide-react';
+import { Github, Shield, Rocket, Lock, Layers, X, Cpu, Globe, Database, Cog, Box } from 'lucide-react';
 import { useLenis } from 'lenis/react';
 import styles from './Works.module.css';
 
@@ -40,13 +40,14 @@ const projects: Project[] = [
     techStack: [
       { category: "Frontend", items: ["React 19", "Vite", "Tailwind CSS 4", "React Router DOM v7", "TanStack React Query", "React Hook Form", "Zod", "Axios", "Recharts", "Lucide Icons", "react-hot-toast"] },
       { category: "Backend", items: ["Node.js Runtime", "Express.js", "JWT Auth", "Passport.js OAuth", "TOTP / otplib", "Prisma ORM", "bcryptjs", "Helmet.js", "Joi Validation", "Winston Logging", "express-rate-limit", "Multer", "node-cron", "UUID", "CORS"] },
-      { category: "Database", items: ["PostgreSQL", "Prisma Schema", "Indexed Access Structures", "Transaction-Safe Auth Workflows"] }
+      { category: "Database", items: ["PostgreSQL", "Prisma Schema", "Indexed Access Structures", "Transaction-Safe Auth Workflows"] },
+      { category: "Containerization", items: ["Docker", "Kubernetes"] }
     ]
   },
   {
     title: "DeployLens",
     subtitle: "Deployment Insights",
-    description: "GitHub Actions and AWS CodeDeploy don't talk to each other. A workflow run completes, a CodeDeploy execution fires and whether a specific commit reached production is something you have to piece together yourself. DeployLens joins both into one timeline by tracks deployments across GitHub Actions and AWS CodeDeploy from a single dashboard",
+    description: "GitHub Actions and AWS CodeDeploy don't talk to each other. A workflow run completes, a CodeDeploy execution fires and whether a specific commit reached production is something you have to piece together yourself. DeployLens joins both into one timeline by tracks deployments across GitHub Actions and AWS CodeDeploy from a single dashboard.",
     features: [
       "SHA Join Engine", "Real-time WebSockets", "CodeDeploy SDK"
     ],
@@ -118,6 +119,7 @@ const Works = () => {
       case 'database': return <Database size={18} />;
       case 'integrations': return <Layers size={18} />;
       case 'infrastructure': return <Database size={18} />;
+      case 'containerization': return <Box size={18} />;
       default: return <Cog size={18} />;
     }
   };
@@ -278,7 +280,7 @@ const Works = () => {
                       </div>
                       <div className={styles.stackItems}>
                         {category.items.map((item) => (
-                          <span key={item} className={styles.stackItem}>
+                          <span key={item} className={`${styles.stackItem} ${category.category.toLowerCase() === 'containerization' ? styles.containerItem : ''}`}>
                             {item}
                           </span>
                         ))}
