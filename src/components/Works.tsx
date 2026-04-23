@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Shield, Rocket, Lock, Layers, X, Cpu, Globe, Database, Cog, Box } from 'lucide-react';
 import { useLenis } from 'lenis/react';
 import styles from './Works.module.css';
@@ -24,13 +24,14 @@ interface Project {
   icon: React.ReactNode;
   techStack: TechStack[];
   badge?: string;
+  titleLogos?: { src: string; alt: string }[];
 }
 
 const projects: Project[] = [
   {
     title: "AegisMesh",
     subtitle: "Identity and Access Management",
-    description: "Most teams end up with auth in one tool, permissions in another, and audit logs somewhere nobody checks. AegisMesh consolidates all of it, its a platform built around a single admin console — MFA, OAuth, session control, RBAC, and audit logs in one place. Which makes access control something you can actually reason about at scale.",
+    description: "Most teams end up splitting auth, permissions, and audit logs across separate tools. AegisMesh keeps it in one place — MFA, OAuth, session control, RBAC, and audit logs, all from a single admin console. Containerized with Docker, runs on Kubernetes, deploys cleanly across environments.",
     features: [
       "Token-Based Auth", "TOTP MFA", "Federated Identity", "Enterprise RBAC"
     ],
@@ -42,12 +43,16 @@ const projects: Project[] = [
       { category: "Backend", items: ["Node.js Runtime", "Express.js", "JWT Auth", "Passport.js OAuth", "TOTP / otplib", "Prisma ORM", "bcryptjs", "Helmet.js", "Joi Validation", "Winston Logging", "express-rate-limit", "Multer", "node-cron", "UUID", "CORS"] },
       { category: "Database", items: ["PostgreSQL", "Prisma Schema", "Indexed Access Structures", "Transaction-Safe Auth Workflows"] },
       { category: "Containerization", items: ["Docker", "Kubernetes"] }
+    ],
+    titleLogos: [
+      { src: "https://www.vectorlogo.zone/logos/docker/docker-icon.svg", alt: "Docker" },
+      { src: "https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg", alt: "Kubernetes" }
     ]
   },
   {
     title: "DeployLens",
     subtitle: "Deployment Insights",
-    description: "GitHub Actions and AWS CodeDeploy don't talk to each other. A workflow run completes, a CodeDeploy execution fires and whether a specific commit reached production is something you have to piece together yourself. DeployLens joins both into one timeline by tracks deployments across GitHub Actions and AWS CodeDeploy from a single dashboard.",
+    description: "GitHub Actions and AWS CodeDeploy don't talk to each other. A workflow runs, a CodeDeploy execution fires, and whether a specific commit reached production is something you piece together yourself. DeployLens connects both into one timeline — one dashboard, no tab-switching.",
     features: [
       "SHA Join Engine", "Real-time WebSockets", "CodeDeploy SDK"
     ],
@@ -59,12 +64,15 @@ const projects: Project[] = [
       { category: "Backend", items: ["Node.js 20", "Express", "PostgreSQL 15", "Prisma ORM", "JWT + bcrypt", "AES-256-GCM", "AWS SDK v3", "Socket.io", "node-cron", "Zod"] },
       { category: "Integrations", items: ["GitHub OAuth + REST API", "AWS CodeDeploy", "AWS SNS + EventBridge", "HMAC-SHA256 Verification"] },
       { category: "Infrastructure", items: ["Self-hosted deployment", "PostgreSQL (RDS/Supabase compatible)"] }
+    ],
+    titleLogos: [
+      { src: "https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg", alt: "AWS CodeDeploy" }
     ]
   },
   {
     title: "VaultLock",
     subtitle: "Offline Password Manager",
-    description: "VaultLock is an offline password manager. Credentials stay on your machine, encrypted, with no cloud sync and no external servers. VaultLock keeps everything local: AES-256 encryption, fast retrieval, and a desktop UI that doesn't require an internet connection to function.",
+    description: "VaultLock is an offline password manager. Credentials stay on your machine — AES-256 encrypted, no cloud sync, no external servers. The desktop UI works without a connection.",
     features: [
       "Zero Knowledge", "AES Encryption", "Argon2 Hashing"
     ],
@@ -80,7 +88,7 @@ const projects: Project[] = [
   {
     title: "SmartFlow",
     subtitle: "Resource Manager",
-    description: "SmartFlow is a team operations platform covering tasks, approvals, resource planning, and reporting. Most teams use separate tools for task tracking, approvals, and resource allocation.Work gets done, but visibility doesn't. SmartFlow puts all of it in one place.",
+    description: "SmartFlow is a team operations platform, tasks, approvals, resource planning, and reporting. Most teams run these across separate tools. Work gets tracked, but the overall picture doesn't. SmartFlow puts it all under one roof.",
     features: [
       "Task Engine", "Approval Flow", "Resource Tracking"
     ],
@@ -128,28 +136,6 @@ const Works = () => {
     return project.techStack.flatMap(stack => stack.items).slice(0, 8);
   };
 
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20, scale: 0.96, filter: "blur(4px)" },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
-    }
-  };
-
   return (
     <>
       <section id="works" className={styles.worksSection} data-aos="fade-up">
@@ -172,11 +158,13 @@ const Works = () => {
                   <div className={styles.titleGroup}>
                     <div className={styles.titleWithBadge}>
                       <h3 className={styles.projectTitle}>{project.title}</h3>
-                      {project.badge && (
-                        <span className={styles.institutionBadge}>
-                          {project.badge}
-                        </span>
-                      )}
+                      <div className={styles.rightGroup}>
+                        {project.badge && (
+                          <span className={styles.institutionBadge}>
+                            {project.badge}
+                          </span>
+                        )}
+                      </div>
                     </div>
                     <p className={styles.projectSubtitle}>{project.subtitle}</p>
                   </div>
@@ -207,6 +195,23 @@ const Works = () => {
                     </a>
                   </div>
                 </div>
+
+                {project.titleLogos && (
+                  <div className={styles.blendedLogos}>
+                    {project.titleLogos.map((logo) => (
+                      <img
+                        key={logo.alt}
+                        src={logo.src}
+                        alt={logo.alt}
+                        className={`
+                          ${styles.blendedLogo} 
+                          ${(logo.alt === 'Docker' || logo.alt === 'GitHub Actions') ? styles.blendedLarge : ''}
+                          ${logo.alt === 'AWS CodeDeploy' ? styles.blendedAWS : ''}
+                        `}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>

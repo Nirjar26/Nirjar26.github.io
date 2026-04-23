@@ -75,7 +75,7 @@ const About = () => {
               data-aos-delay="100"
               data-aos-duration="700"
             >
-              Hi, I'm <strong>Nirjar</strong>, an <strong>Associate Cloud Engineer </strong>residing in <strong>Ahmedabad, Gujarat</strong>. I work in cloud and security — mostly the infrastructure side, understanding how systems are actually put together and what can go wrong.
+              Hi, I'm <strong>Nirjar</strong>, an <strong>Associate Cloud Engineer</strong>, living in <strong>Ahemdabad.</strong> I work on cloud infrastructure and security, mostly the infrastructure side: understanding how systems are actually put together and what can go wrong.
             </p>
 
             <p
@@ -84,8 +84,7 @@ const About = () => {
               data-aos-delay="200"
               data-aos-duration="700"
             >
-              The interest started early. I was always more curious about what was happening behind the screen than what was on it. Networks, systems, the cloud — I wanted to know how things actually run, not just that they do. That eventually turned into something I take seriously.
-              These days I'm trying to get good at a few specific things rather than knowing a bit about everything.
+              The interest started early. I was always more curious about what was happening behind the screen than what was on it. Networks, systems, the cloud. Somewhere along the way that turned into a career direction. These days I'm trying to get good at a few specific things rather than knowing a bit about everything.
             </p>
 
             <p

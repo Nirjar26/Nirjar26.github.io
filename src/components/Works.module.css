@@ -51,6 +51,8 @@
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   height: 100%;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  position: relative;
+  overflow: hidden;
 }
 
 .projectCard:hover {
@@ -58,18 +60,58 @@
   box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.1);
 }
 
+.blendedLogos {
+  position: absolute;
+  bottom: -15px;
+  right: -25px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+  transform: rotate(-10deg);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
+.projectCard:hover .blendedLogos {
+  opacity: 0.25;
+  transform: rotate(0deg) scale(1.05);
+}
+
+.blendedLogo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.blendedLarge {
+  width: 100px;
+  height: 100px;
+}
+
+.blendedAWS {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  bottom: 10px;
+  right: 5px;
+}
 
 .cardActions {
   display: flex;
   justify-content: flex-start;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .cardInfo {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .titleGroup {
@@ -108,6 +150,12 @@
   text-transform: capitalize;
   letter-spacing: -0.01rem;
   box-shadow: 0 4px 12px rgba(14, 165, 233, 0.05);
+}
+
+.rightGroup {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
 }
 
 .projectSubtitle {
@@ -193,7 +241,6 @@
   align-items: center;
   padding: 1.5rem;
   overflow: hidden;
-  /* Overlay doesn't scroll anymore */
 }
 
 .modalContent {
@@ -202,12 +249,10 @@
   background-color: var(--white);
   border-radius: 2rem;
   padding: 0;
-  /* Changed to handle padding in sub-elements */
   position: relative;
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
   margin: auto;
   max-height: 90vh;
-  /* Stay centered and bounded */
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -224,9 +269,7 @@
   overflow-y: auto;
   flex-grow: 1;
   min-height: 0;
-  /* Critical for flexbox scrolling children */
   display: block;
-  /* Premium small scrollbar */
   scrollbar-width: thin;
   scrollbar-color: var(--line-strong) transparent;
 }
@@ -375,8 +418,6 @@
     flex-shrink: 0;
   }
 
-
-
   .projectTitle {
     font-size: 1.25rem;
     text-align: left;
@@ -398,6 +439,23 @@
 
   .projectCard {
     padding: 1.5rem;
+  }
+
+  .blendedLogos {
+    bottom: -15px;
+    right: -15px;
+    gap: 1rem;
+    opacity: 0.25;
+  }
+
+  .blendedLogo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .blendedLarge {
+    width: 75px;
+    height: 75px;
   }
 
   .modalOverlay {

@@ -115,16 +115,9 @@ const Contact = () => {
               data-aos-delay="200"
               data-aos-duration="700"
             >
-              Building and exploring cloud-native applications, IAM systems, and secure backend architectures.
+              Building cloud-native applications, IAM systems, and secure backend architectures. Looking to work on problems that actually ship.
             </p>
-            <p
-              className={styles.description}
-              data-aos="fade-up"
-              data-aos-delay="300"
-              data-aos-duration="600"
-            >
-              Interested in working on real-world, production-grade solutions.
-            </p>
+
             <motion.div
               className={styles.indicatorLine}
               initial={{ scaleX: 0, opacity: 0 }}
