@@ -45,8 +45,6 @@ export interface Frame {
   title: string
   desc: string
   tagline?: string
-  achievements?: string[]
-  techStack?: string[]
 }
 
 export interface Project {
@@ -54,7 +52,7 @@ export interface Project {
   category: string
   year?: string
   description: string
-  link: string
+  link?: string
   projectLink?: string
   tags: string[]
 }
