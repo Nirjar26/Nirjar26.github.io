@@ -10,44 +10,44 @@ export type { Article, Frame, HeroAction, ProductionCapability, Project }
 
 export const productionCapabilities: ProductionCapability[] = [
   {
-    title: "Maintainability",
-    tagline: "Explains itself later.",
-    desc: "Decisions get documented as they're made. A repo that can't explain itself in six months is a bug.",
+    title: "Systems Fluency",
+    tagline: "Where pieces connect.",
+    desc: "Most people go deep on one layer. I've worked across infra, pipelines, and security long enough to see where they quietly depend on each other.",
   },
   {
     title: "System Design",
     tagline: "Whiteboard before code.",
-    desc: "I map what breaks before I write what works — cheaper to argue on a diagram than fix in production.",
+    desc: "I map out what could break before writing what works. Cheaper to argue on a diagram than fix in production.",
   },
   {
     title: "Cost Awareness",
     tagline: "Efficient, not cheap.",
-    desc: "I weigh what infra costs to run, not just to build. Waste is easier to catch in review than the bill.",
+    desc: "I weigh what infra costs to run, not just to build. Waste is easier to catch in review than on the bill.",
   },
   {
     title: "Quality",
     tagline: "Read twice, not skimmed.",
-    desc: "Typed, consistent, scanned before a human ever sees it — review time goes to design, not typos.",
+    desc: "Typed, consistent, checked before a human ever sees it — so review time goes to design, not typos.",
   },
   {
     title: "Security",
-    tagline: "Breaches get planned for, not explained.",
-    desc: "Least privilege and threat-modeled defaults from day one.",
+    tagline: "Threat model, not afterthought.",
+    desc: "I've sat close enough to both infra and code to know security bolted on late rarely holds.",
   },
   {
     title: "Fault Isolation",
     tagline: "Small blast radius.",
-    desc: "One failure doesn't take three down with it. Cause is obvious, fast.",
+    desc: "One failure shouldn't take three others down with it. Cause should be obvious, fast.",
   },
   {
     title: "Pipeline Discipline",
     tagline: "Green means passing.",
-    desc: "Infra sized to real usage, not guesswork. Tests and scans gate every deploy — passing actually means something.",
+    desc: "Infra sized to real usage, not guesswork. Tests and scans gate every deploy, so passing actually means something.",
   },
   {
     title: "Observability",
     tagline: "Unmonitored is unproven.",
-    desc: "Logs, metrics, traces exist before launch, not after the first outage. Alerts fire only for what matters.",
+    desc: "Logs, metrics, and traces exist before launch, not after the first outage. Alerts fire only for what matters.",
   },
 ]
 
@@ -74,12 +74,6 @@ export const frames: Frame[] = [
     title: "Ship faster, break less.",
     desc: "CI/CD built for repeatable deploys — not manual steps someone has to remember.",
     tagline: "Pipelines that don't page you at 2am.",
-    achievements: [
-      "Zero-touch GitOps pipelines that eliminate manual deploys — built for Bastion with GitHub Actions and ArgoCD reconciliation.",
-      "Signed, scanned delivery pipelines that hold production latency under load — built for HookDrop, sub-35ms SSE at scale.",
-      "Deployment tracking that ties every release back to its exact commit — built for DeployLens with real-time SHA correlation.",
-    ],
-    techStack: ["GitHub Actions", "Docker", "Kubernetes", "Helm", "ArgoCD", "AWS ECR", "Terraform"],
   },
   {
     number: "02",
@@ -87,11 +81,6 @@ export const frames: Frame[] = [
     title: "Fixed, not filed.",
     desc: "CVEs get triaged by CVSS severity and closed within SLA — before they're weaponized, not after.",
     tagline: "Patched before they're exploited.",
-    achievements: [
-      "Automated vulnerability triage matching CVSS thresholds with SLA enforcement.",
-      "Container and dependency scanning pipeline gating deployments on critical CVEs.",
-    ],
-    techStack: ["Trivy", "Dependabot", "SonarCloud", "Grype", "GitHub Advisory"],
   },
   {
     number: "03",
@@ -99,12 +88,6 @@ export const frames: Frame[] = [
     title: "Repeats become pipelines.",
     desc: "Fewer manual steps, fewer places for mistakes to hide.",
     tagline: "Fewer runbooks, more running itself.",
-    achievements: [
-      "Infra-aware CI retries that stop false failures from blocking merges — shipped as BlamLess, live on GitHub Marketplace.",
-      "Cost audits that output ready-to-run fixes, not just reports — built for Kost with scheduled kubectl remediation.",
-      "Self-updating ML models with no manual retrain step — built for Bastion using Kubernetes CronJobs.",
-    ],
-    techStack: ["GitHub Actions", "Kubernetes CronJobs", "ArgoCD", "GitOps"],
   },
   {
     number: "04",
@@ -112,12 +95,6 @@ export const frames: Frame[] = [
     title: "Breach-proof by default.",
     desc: "Least privilege and secure defaults from day one, not patched in after something breaks.",
     tagline: "Deny by default, verify always.",
-    achievements: [
-      "Deny-first IAM with real-time login risk scoring — cut flagged security issues 87.4% when applied to Bastion.",
-      "Admission-layer defense that blocks unsigned workloads before they run — built for HookDrop with Kyverno and NetworkPolicies.",
-      "Local-only credential storage with no cloud trust dependency — built for VaultLock on Argon2id and AES-256-GCM.",
-    ],
-    techStack: ["RBAC", "MFA", "OAuth", "Argon2id", "AES-256-GCM", "Kyverno", "Falco"],
   },
   {
     number: "05",
@@ -125,11 +102,6 @@ export const frames: Frame[] = [
     title: "Catch it before it ships.",
     desc: "Static analysis, dependency, and container scans run inside CI. Bad code never reaches review.",
     tagline: "Catch it in the PR, not in prod.",
-    achievements: [
-      "CI-gated static and dependency analysis — dropped open issues from 872 to 479 in 30 days on Bastion, security score 6.5 to 8.5.",
-      "Signature-verified image admission that blocks unverified containers — built for HookDrop with Cosign and Kyverno.",
-    ],
-    techStack: ["SonarCloud", "CodeQL", "Trivy", "Cosign", "Kyverno"],
   },
   {
     number: "06",
@@ -137,12 +109,6 @@ export const frames: Frame[] = [
     title: "Know before it breaks.",
     desc: "Metrics and alerts tuned for real signal — incidents get caught by a dashboard, not by users.",
     tagline: "See the failure before your users do.",
-    achievements: [
-      "Full-stack tracing that turns failures into alerts instead of tickets — built for HookDrop with OpenTelemetry, Prometheus, and Grafana.",
-      "Unified telemetry that connects an anomaly to its cause in one view — built for Bastion via Datadog APM.",
-      "Usage-based cost alerting that flags waste before it hits the bill — built for Kost with automated Slack reporting.",
-    ],
-    techStack: ["OpenTelemetry", "Prometheus", "Grafana", "Loki", "Tempo", "Datadog"],
   },
   {
     number: "07",
@@ -150,11 +116,6 @@ export const frames: Frame[] = [
     title: "Fail loud, recover fast.",
     desc: "Rollbacks and runbooks get planned before an incident, not written during one.",
     tagline: "Prepared before the alert fires.",
-    achievements: [
-      "Automated rollbacks and disaster recovery pipelines for zero-downtime production recovery.",
-      "Structured runbooks and incident triage workflows mapped straight to telemetry alerts.",
-    ],
-    techStack: ["Grafana", "Prometheus", "Datadog", "PagerDuty", "ArgoCD"],
   },
 ]
 
@@ -188,6 +149,14 @@ export const projects: Project[] = [
     link: "https://github.com/nirjxr26/HookDrop",
     projectLink: "/works/hookdrop",
     tags: ["DevOps"],
+  },
+  {
+    title: "Hardware Based Data Retrieval and Imaging Tool",
+    category: "Digital Forensics & Incident Response",
+    year: "Coming Up",
+    description:
+      "Acquires and images digital evidence without ever touching the original device, then verifies it with cryptographic hashing so it holds up for chain of custody.",
+    tags: ["DevOps", "Cloud"],
   },
   {
     title: "DeployLens",
