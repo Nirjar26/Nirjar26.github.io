@@ -151,11 +151,11 @@ export const projects: Project[] = [
     tags: ["DevOps"],
   },
   {
-    title: "Hardware Based Data Retrieval and Imaging Tool",
+    title: "Data Imaging & Retrieval Device",
     category: "Digital Forensics & Incident Response",
     year: "Coming Up",
     description:
-      "Acquires and images digital evidence without ever touching the original device, then verifies it with cryptographic hashing so it holds up for chain of custody.",
+      "A standalone Hardware device that safely images digital evidence and verifies it with cryptographic hashing for chain of custody.",
     tags: ["DevOps", "Cloud"],
   },
   {
