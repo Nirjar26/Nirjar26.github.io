@@ -12,7 +12,7 @@ export const productionCapabilities: ProductionCapability[] = [
   {
     title: "Systems Fluency",
     tagline: "Where pieces connect.",
-    desc: "Most people go deep on one layer. I've worked across infra, pipelines, and security long enough to see where they quietly depend on each other.",
+    desc: "Most people go deep on one layer. I've spent enough time across systems to see where they quietly depend on each other.",
   },
   {
     title: "System Design",
