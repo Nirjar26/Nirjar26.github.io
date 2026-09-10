@@ -23,7 +23,7 @@ export function Header({ activePath = "/" }: { activePath?: string }) {
   }, [mobileMenuOpen])
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 border-b border-hairline text-ink transition-colors duration-200 ${mobileMenuOpen ? "bg-canvas" : "bg-canvas/85 backdrop-blur-md"}`}>
+    <header className={`fixed inset-x-0 top-0 z-50 border-b border-hairline dark:border-hairline/50 text-ink transition-colors duration-200 ${mobileMenuOpen ? "bg-canvas" : "bg-canvas/85 backdrop-blur-md"}`}>
       {/* Skip to Main Content for Accessibility */}
       <a
         href="#main-content"
@@ -152,7 +152,7 @@ export function Header({ activePath = "/" }: { activePath?: string }) {
 
         {/* Full-Screen Vertical Curtain-Falling Nav Drawer (Mobile <= 768px) */}
         {mobileMenuOpen && (
-          <div className="fixed inset-x-0 top-11 bottom-0 z-40 bg-canvas px-7 pt-7 pb-12 flex flex-col justify-between overflow-y-auto md:hidden text-ink animate-curtain-fall border-t border-hairline h-[calc(100vh-44px)]">
+          <div className="fixed inset-x-0 top-11 bottom-0 z-40 bg-canvas px-7 pt-7 pb-12 flex flex-col justify-between overflow-y-auto md:hidden text-ink animate-curtain-fall border-t border-hairline dark:border-hairline/50 h-[calc(100vh-44px)]">
             {/* Top Links Section with Generous Vertical Padding */}
             <div className="flex flex-col gap-6 text-[28px] font-normal tracking-normal normal-none py-2 text-ink">
               <a

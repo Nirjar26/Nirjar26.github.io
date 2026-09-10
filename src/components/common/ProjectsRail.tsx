@@ -29,7 +29,7 @@ export function ProjectsRail({
       <div className="reveal-on-scroll">
         <CarouselTrack>
           {featured.map((project) => (
-            <ProjectCard key={project.title} project={project} cardBgClass={cardBgClass} />
+            <ProjectCard key={project.title} project={project} cardBgClass={cardBgClass} isFeatured />
           ))}
         </CarouselTrack>
       </div>
@@ -44,7 +44,7 @@ export function ProjectsRail({
           </Container>
           <CarouselTrack>
             {more.map((project) => (
-              <ProjectCard key={project.title} project={project} cardBgClass={cardBgClass} />
+              <ProjectCard key={project.title} project={project} cardBgClass={cardBgClass} isFeatured={false} />
             ))}
           </CarouselTrack>
         </div>

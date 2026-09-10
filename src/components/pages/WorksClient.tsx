@@ -18,7 +18,7 @@ export function WorksClient() {
         {/* Hero Header */}
         <PageHero
           title="Works."
-          subhead="Systems, pipelines, and infrastructure built the way production actually demands it."
+          subhead="A record of what I've actually designed, built and shipped."
         />
 
         {/* Reusable Featured Works & More Works Carousels */}
